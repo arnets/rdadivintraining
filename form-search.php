@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>my form</title>
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<title>my form search</title>
+	 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="js/typeahead.js"></script>
@@ -24,7 +24,7 @@
     <div class="container">
    <br />
    <br />
-   <div class="form-group">
+   <div class="form-group" style="margin-top: 100px;">
     <div class="input-group">
      <div class="form-label-group">   
      <input type="text" name="search_text" id="search_text" placeholder="source" class="form-control typeahead" />
@@ -35,7 +35,7 @@
      <label class="demo-label" for="destination">destination city</label>
      </div>
      <div class="form-label-group">
-     <input type="date" name="search_text3" id="search_text3" placeholder="Search by date" class="form-control typeahead" />
+     <input type="date" name="search_text3" id="search_text3" min="2019-04-06" placeholder="Search by date" class="form-control typeahead" />
      <label class="demo-label" for="source">date</label>
      </div>
     </div>
