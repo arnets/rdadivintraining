@@ -12,9 +12,13 @@
 	</tr>
     <?php
         include"connection.php";
-        $queryy= $pdo->prepare("SELECT * from test ORDER BY id DESC");
-        $queryy->execute();
-        while($data= $queryy->fetch()){
+        $dsn ="mysql:host=localhost;dbname=testing";
+        $user ="ishimwe";
+        $pass ="D1 ";
+        $con = new Connection($dsn,$user,$pass); 
+        $query= $con->prepare("SELECT * from test ORDER BY id DESC");
+        $query->execute();
+        while($data= $query->fetch()){
     	echo'
         <tr>
          <td>'.$data['source'].'</td>

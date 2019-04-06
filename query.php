@@ -2,13 +2,11 @@
 class Query{
 	public $field = [20];
 	public $data = [20];
-	public function connect(){
-    }
 	public function insert($len, $tablename){
 		#connection..............
 		try {
-        $user = "root";
-        $password = "";
+        $user = "ishimwe";
+        $password = "D1 ";
         $pdo = new PDO("mysql:host=localhost;dbname=testing", $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
          }
         catch (PDOException $e) {
