@@ -41,7 +41,7 @@
         <label class="demo-label" for="departure">date</label>
     </div><br><br>
     <button type="submit" class="btn btn-success" id="search" name="submit">save</button>
-    <a href="view.php" class="btn btn-primary">view data</a>
+    <a href="form-search.php" class="btn btn-primary">view data</a>
 </form>
 </div>
 </body>
