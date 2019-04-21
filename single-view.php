@@ -12,45 +12,36 @@
 <body>
 <div class="container">    
     <?php
-    if(isset($_GET['id']))
+    if(isset($_GET['data']))
     {
-        $id = $_GET['id']; 
-        include"connection.php";
-        $dsn ="mysql:host=localhost;dbname=testing";
-        $user ="ishimwe";
-        $pass ="D1 ";
-        $con = new Connection($dsn,$user,$pass); 
-        $query= $con->prepare("SELECT * from test WHERE id = ".$id." ORDER BY id DESC");
-        $query->execute();
+        $strEnc = $_GET['data'];
+        $arr = unserialize(urldecode($strEnc)); 
         $output .= '
             <div class="row mb-2">
                 ';
-        while($row= $query->fetch()){
         $output .= '
         <div class="col-md-12">
           <div class="card flex-md-row mb-4 box-shadow h-md-150">
             <div class="card-body d-flex flex-column align-items-start">
               <strong class="d-inline-block mb-2 text-primary">travel</strong>
               <p class="mb-1">
-                <a class="text-muted" href="#">source: '.$row["source"].'</a><br>
+                <a class="text-muted" href="#">source: '.$arr["source"].'</a><br>
                 <center>|<br>|<br>\/</center>
-                <a class="text-muted" href="#">destination: '.$row["destination"].'</a><br>
+                <a class="text-muted" href="#">destination: '.$arr["destination"].'</a><br>
               </p>
               <p class="card-text mb-auto"></p>
             </div>
             <div class="card-body">
             <strong class="d-inline-block mb-2 text-primary">dates</strong>
               <p class="mb-1">
-                <a class="text-muted" href="#">depart: '.$row["departure_date"].'</a><br>
+                <a class="text-muted" href="#">depart: '.$arr["departure_date"].'</a><br>
                 |<br>|<br>|<br>
-                <a class="text-muted" href="#">retour: '.$row["return_date"].'</a><br>
+                <a class="text-muted" href="#">retour: '.$arr["return_date"].'</a><br>
               </p>
               </div>        
           </div>
         </div>
   ';
- }
-
  $output.='</div>';
  echo $output;
 }

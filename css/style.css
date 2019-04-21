@@ -5,15 +5,18 @@
     }
     select.searching{
         border-radius: 0px;
-        width: 250px;
+        width: 150px;
         font-weight: 100;
     }
     input[type="date"]{
         border-radius: 0px; 
-        width: 250px;
+        width: 200px;
         height: 62px;
         font-weight: 100;
     }
 
-
+    .showResult{
+        transition: 2s;
+        -webkit-transition:2s;
+    }
     
