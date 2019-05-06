@@ -1,4 +1,4 @@
-- configuration file with datasource information
+- configuration file with datasource information(database connection)
 - from form-search get the information
   pass the inform to soap Handler(i.e. paramaterizing the form information into the soap request)
   soap post these information to datahandler

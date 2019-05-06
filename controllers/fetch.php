@@ -7,7 +7,7 @@ $return_date = $_POST['query4'];
 $srcCity = $_POST['srcCity'];
 $destCity = $_POST['destCity'];
 echo "source is: <i style='color:gold'>".$source.":".$srcCity."</i> dest is: <i style='color:blue'>".$dest.":".$destCity."</i>departure date is: <i style='color:green'>".$departure_date."</i> return date is: <i style='color:grey'>".$return_date."</i>";
-$connect = mysqli_connect("localhost", "ishimwe", "D1 ", "testing");
+$connect = mysqli_connect("localhost", "ishimwe", "Divin@12345", "testing");
 $output = '';
 if(isset($_POST["query"]) && isset($_POST["query2"]) && isset($_POST["query3"]) && isset($_POST["query4"]))
 {
@@ -19,7 +19,7 @@ if(isset($_POST["query"]) && isset($_POST["query2"]) && isset($_POST["query3"]) 
  $search6 = mysqli_real_escape_string($connect, $_POST["destCity"]);
  $query = "
   SELECT * FROM test WHERE source LIKE '%".$search.":".$search5."%'
-  AND destination LIKE '%".$search2.":".$search6."%' AND departure_date LIKE
+  AND destination LIKE '%".$search2.":".$search6."%' AND depart_date LIKE
   '%".$search3."%' AND return_date LIKE '%".$search4."%' 
   ";
 }
@@ -60,7 +60,7 @@ if(mysqli_num_rows($result) > 0)
               </p>
               </div>
               <div class="card-header">
-              <a class="btn btn-primary" href="single-view.php?data='.$strEnc.'">view more</a>
+              <a class="btn btn-primary" href="../views/single-view.php?data='.$strEnc.'">view more</a>
               </div>         
           </div>
         </div>

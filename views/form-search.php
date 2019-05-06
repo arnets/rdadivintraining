@@ -7,8 +7,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- <script src="js/typeahead.js"></script> -->
     <script type= "text/javascript" src = "countries.js"></script>
-    <link href="css/floating-labels.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="../public/css/floating-labels.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
 </head>
 <body>
     <div class="container">
@@ -53,7 +53,7 @@ $(document).ready(function(){
  function load_data(query,query2,query3,query4,srcCity,destCity)
  {
   $.ajax({
-   url:"fetch.php",
+   url:"../controllers/fetch.php",
    method:"POST",
    data:{query:query,query2:query2,query3:query3,query4:query4,srcCity:srcCity,destCity:destCity},
    success:function(data)
