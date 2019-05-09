@@ -1,6 +1,5 @@
 <?php
-include"../models/connection.php";
-
+//fetch.php
 $source = $_POST['query'];
 $dest = $_POST['query2'];
 $departure_date = $_POST['query3'];
@@ -8,40 +7,35 @@ $return_date = $_POST['query4'];
 $srcCity = $_POST['srcCity'];
 $destCity = $_POST['destCity'];
 echo "source is: <i style='color:gold'>".$source.":".$srcCity."</i> dest is: <i style='color:blue'>".$dest.":".$destCity."</i>departure date is: <i style='color:green'>".$departure_date."</i> return date is: <i style='color:grey'>".$return_date."</i>";
-$dsn ="mysql:host=localhost;dbname=testing";
-$user ="ishimwe";
-$pass ="Divin@12345";
-$pdo = new Connection($dsn,$user,$pass);
+$connect = mysqli_connect("localhost", "ishimwe", "Divin@12345", "testing");
 $output = '';
 if(isset($_POST["query"]) && isset($_POST["query2"]) && isset($_POST["query3"]) && isset($_POST["query4"]))
 {
-
- $search = $_POST["query"];
- $search2 = $_POST["query2"];
- $search3 = $_POST["query3"];
- $search4 = $_POST["query4"];
- $search5 = $_POST["srcCity"];
- $search6 = $_POST["destCity"];
-
-  $query = $pdo->prepare("
+ $search = mysqli_real_escape_string($connect, $_POST["query"]);
+ $search2 = mysqli_real_escape_string($connect, $_POST["query2"]);
+ $search3 = mysqli_real_escape_string($connect, $_POST["query3"]);
+ $search4 = mysqli_real_escape_string($connect, $_POST["query4"]);
+ $search5 = mysqli_real_escape_string($connect, $_POST["srcCity"]);
+ $search6 = mysqli_real_escape_string($connect, $_POST["destCity"]);
+ $query = "
   SELECT * FROM test WHERE source LIKE '%".$search.":".$search5."%'
   AND destination LIKE '%".$search2.":".$search6."%' AND depart_date LIKE
   '%".$search3."%' AND return_date LIKE '%".$search4."%' 
-  ");
+  ";
 }
 else
 {
- $query = $pdo->prepare("
+ $query = "
   SELECT * FROM test ORDER BY id
- ");
+ ";
 }
-$query->execute();
-if($query->rowCount()>0)
+$result = mysqli_query($connect, $query);
+if(mysqli_num_rows($result) > 0)
 {
  $output .= '
   <div class="row mb-2">
  ';
- while($row = $query->fetch())
+ while($row = mysqli_fetch_array($result))
  {
   $str = serialize($row);
   $strEnc = urlencode($str);
@@ -79,5 +73,18 @@ else
 {
  echo '!!!!!Data Not Found';
 }
-
 ?>
+<!-- <div class="col-md-6">
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-2 text-primary">World</strong>
+              <h3 class="mb-0">
+                <a class="text-dark" href="#">Featured post</a>
+              </h3>
+              <div class="mb-1 text-muted">Nov 12</div>
+              <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+              <a href="#">Continue reading</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">
+          </div>
+        </div> -->
