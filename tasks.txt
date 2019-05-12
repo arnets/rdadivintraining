@@ -7,6 +7,7 @@
 - ????(3)create an abstract class for connection and create MSqlConnection class that inherite from connection
 - *(1)read about MVC => keep view with only tasks. model, view, and controller should be clear
 - (6)use angularjs for dynamic divs display
+- use ajax in controller
 - (4)create a classes folder in which we put all our classes(e.g. classe ya user, class transaction, class ya booking, )
 - (8)later have a look at bootstrap countries and cities
 

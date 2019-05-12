@@ -1,19 +1,23 @@
 <?php
-require_once "../lib/nusoap.php";
+//this is a soap server
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
 
-function getData($source,$destination) {
-    if ($source == "Rwanda:Kigali-ville") {
-        return join(",", array(
-            "The WordPress Anthology",
-            "PHP Master: Write Cutting Edge Code",
-            "Build Your Own Website the Right Way"));
-	}
-	else {
-            return "No products listed under that category";
-	}
+function getData($source) {
+$conn=mysqli_connect('localhost','ishimwe','Divin@12345','testing');
+$data = $source;
+$query = "SELECT * FROM test WHERE source = '".$data."'";
+$result = mysqli_query($conn,$query);
+$row = mysqli_fetch_assoc($result);
+return $row['destination'];
 }
-
-$server = new soap_server();
-$server->register("getData");
-$server->service($HTTP_RAW_POST_DATA);
-?>
+require('../../libs/nusoap/lib/nusoap.php');
+$server = new nusoap_server();
+$server->configureWSDL('soapManager', 'urn:travels');
+$server->register("getData",
+array('source' => 'xsd:string'),
+array('destination' => 'xsd:string'),
+'urn:travels',
+'urn:travels#getData');
+@$server->service(file_get_contents("php://input"));?>
