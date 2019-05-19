@@ -1,5 +1,5 @@
 <?php
-include"../models/connection.php";
+include"models/connection.php";
 
 $source = $_POST['query'];
 $dest = $_POST['query2'];

@@ -9,13 +9,14 @@
     <script type= "text/javascript" src = "countries.js"></script>
     <link href="../public/css/floating-labels.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 </head>
 <body>
-    <div class="container">
-   <div class="form-group" style="margin-top: 100px;">
+    <div class="container" ng-app="live_search_app" ng-controller="live_search_controller" ng-init="fetchData()">
+    <div class="form-group" style="margin-top: 100px;">
     <div class="input-group">
     <div class="form-label-group">   
-    <select class="form-control searching" id="search_text" name="search_text" style="height: 62px">
+    <select class="form-control searching" id="search_text" name="search_text" style="height: 62px" >
     </select>
      </div>
     <div class="form-label-group">   
@@ -23,7 +24,7 @@
     </select>
      </div>
     <div class="form-label-group">   
-    <select class="form-control searching" id="search_text2" name="search_text2" style="height: 62px;">
+    <select class="form-control searching" id="search_text2" name="search_text2" style="height: 62px;" ng-model="search_query">
     </select>
      </div>
     <div class="form-label-group">   
@@ -31,21 +32,64 @@
     </select>
      </div>
      <div class="form-label-group">
-     <input type="date" name="search_text3" id="search_text3" placeholder="Search by date" class="form-control" />
+     <input type="date" name="search_text3" id="search_text3" placeholder="Search by date" class="form-control"/>
      <label class="demo-label" for="source">date de depart</label>
      </div>
      <div class="form-label-group">
-     <input type="date" name="search_text4" id="search_text4" placeholder="Search by date" class="form-control" />
+     <input type="date" name="search_text4" id="search_text4" placeholder="Search by date" class="form-control"/>
      <label class="demo-label" for="source">date de retour</label>
      </div>
     </div>
-    <button id="search" type="submit" class="btn btn-default">search</button>
+    <button id="search" type="submit" class="btn btn-default" ng-click="fetchData()">search</button>
+    {{search_query}}
+    {{searchData}}
    </div>
    <br />
-   <div id="result" class="showResult"></div>
+   <div id="result" class="showResult">
+     <div class="row mb-2">
+       <div class="col-md-6" ng-repeat="x in searchData">
+          <div class="card flex-md-row mb-4 box-shadow h-md-150" style="border-radius:0px;">
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-2 text-primary">travel</strong>
+              <p class="mb-1">
+                <a class="text-muted" href="#">{{x.source}}</a><br>
+                <center>|<br>|<br>\/</center>
+                <a class="text-muted" href="#">{{x.destination}}</a><br>
+              </p>
+              <p class="card-text mb-auto"></p>
+            </div>
+            <div class="card-body">
+            <strong class="d-inline-block mb-2 text-primary">dates</strong>
+              <p class="mb-1">
+                <a class="text-muted" href="#">{{x.depart_date}}</a><br>
+                |<br>|<br>|<br>
+                <a class="text-muted" href="#">{{x.return_date}}</a><br>
+              </p>
+              </div>
+              <div class="card-header">
+              <a class="btn btn-primary" href="../views/single-view.php">view more</a>
+              </div>         
+          </div>
+        </div>
+      </div>
+   </div>
   </div>
 </body>
 <script>
+var app = angular.module('live_search_app', []);
+app.controller('live_search_controller', function($scope, $http){
+ $scope.fetchData = function(){
+  $http({
+   method:"POST",
+   url:"search.php",
+   data:{search_query:$scope.search_query}
+  }).success(function(data){
+   $scope.searchData = data;
+  });
+ };
+});
+</script>
+<!-- <script>
 $(document).ready(function(){
  $("#result").hide();
  load_data();
@@ -53,7 +97,7 @@ $(document).ready(function(){
  function load_data(query,query2,query3,query4,srcCity,destCity)
  {
   $.ajax({
-   url:"../controllers/fetch.php",
+   url:"../fetch2.php",
    method:"POST",
    data:{query:query,query2:query2,query3:query3,query4:query4,srcCity:srcCity,destCity:destCity},
    success:function(data)
@@ -80,7 +124,7 @@ $(document).ready(function(){
   }
  });
 });
-</script>
+</script> -->
 <script language="javascript">
   populateCountries("search_text","srcCity");
   populateCountries("search_text2","destCity");
