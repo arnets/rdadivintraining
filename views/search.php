@@ -14,12 +14,13 @@ $connect = new Connection($dsn,$user,$pass);
 $form_data = json_decode(file_get_contents("php://input"));
 $query = '';
 $data = array();
-if(isset($form_data->search_query))
+if(isset($form_data->search_query)  && isset($form_data->search_query2))
 {
  $search_query = $form_data->search_query;
+ $search_query2 = $form_data->search_query2;
  $query = "
  SELECT * FROM test 
- WHERE destination LIKE '%$search_query%' 
+ WHERE destination LIKE '%$search_query2%' AND source LIKE '%$search_query%' 
  ";
 }
 else

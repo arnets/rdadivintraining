@@ -16,7 +16,7 @@
     <div class="form-group" style="margin-top: 100px;">
     <div class="input-group">
     <div class="form-label-group">   
-    <select class="form-control searching" id="search_text" name="search_text" style="height: 62px" >
+    <select class="form-control searching" id="search_text" name="search_text" style="height: 62px" ng-model="search_query">
     </select>
      </div>
     <div class="form-label-group">   
@@ -24,7 +24,7 @@
     </select>
      </div>
     <div class="form-label-group">   
-    <select class="form-control searching" id="search_text2" name="search_text2" style="height: 62px;" ng-model="search_query">
+    <select class="form-control searching" id="search_text2" name="search_text2" style="height: 62px;" ng-model="search_query2">
     </select>
      </div>
     <div class="form-label-group">   
@@ -82,7 +82,7 @@ app.controller('live_search_controller', function($scope, $http){
   $http({
    method:"POST",
    url:"search.php",
-   data:{search_query:$scope.search_query}
+   data:{search_query:$scope.search_query,search_query2:$scope.search_query2}
   }).success(function(data){
    $scope.searchData = data;
   });
