@@ -1,7 +1,7 @@
 <?php
 include '../models/connection.php';
-$data = json_decode(file_get_contents("php://input"));
-$source = $data->source;
+// $data = json_decode(file_get_contents("php://input"));
+// $source = $data->source;
 // $destination = $data->destination;
 // $srcCity = $data->srcCity;
 // $destCity = $data->destCity;

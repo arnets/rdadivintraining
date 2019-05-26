@@ -10,44 +10,41 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+  <?php
+if (isset($_GET['source']))
+{
+  ?>
 <div class="container" style="padding-top: 10px;">    
-    <?php
-    if(isset($_GET['data']))
-    {
-        $strEnc = $_GET['data'];
-        $arr = unserialize(urldecode($strEnc)); 
-        $output .= '
-            <div class="row mb-2">
-                ';
-        $output .= '
-        <div class="col-md-12">
-          <div class="card flex-md-row mb-4 box-shadow h-md-150">
+  <div id="result" class="showResult">
+     <div class="row mb-2">
+       <div class="col-md-6" ng-repeat="x in searchData">
+          <div class="card flex-md-row mb-4 box-shadow h-md-150" style="border-radius:0px;">
             <div class="card-body d-flex flex-column align-items-start">
               <strong class="d-inline-block mb-2 text-primary">travel</strong>
               <p class="mb-1">
-                <a class="text-muted" href="#">source: '.$arr["source"].'</a><br>
+                <a class="text-muted" href="#"><?php echo $_GET['source'];?></a><br>
                 <center>|<br>|<br>\/</center>
-                <a class="text-muted" href="#">destination: '.$arr["destination"].'</a><br>
+                <a class="text-muted" href="#"><?php echo $_GET['destination'];?></a><br>
               </p>
               <p class="card-text mb-auto"></p>
             </div>
             <div class="card-body">
             <strong class="d-inline-block mb-2 text-primary">dates</strong>
               <p class="mb-1">
-                <a class="text-muted" href="#">depart: '.$arr["departure_date"].'</a><br>
+                <a class="text-muted" href="#"><?php echo $_GET['depart'];?></a><br>
                 |<br>|<br>|<br>
-                <a class="text-muted" href="#">retour: '.$arr["return_date"].'</a><br>
+                <a class="text-muted" href="#"><?php echo $_GET['return'];?></a><br>
               </p>
-              </div>        
+              </div>       
           </div>
         </div>
-  ';
- $output.='</div>';
- echo $output;
-}
-    	?>
+      </div>
+   </div>
 <br>        
 <a href="form-search.php" class="btn btn-primary">back</a>
 </div>
+<?php
+}
+?>
 </body>
 </html>

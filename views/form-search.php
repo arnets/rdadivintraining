@@ -59,7 +59,7 @@
               <p class="card-text mb-auto"></p>
             </div>
             <div class="card-body">
-            <strong class="d-inline-block mb-2 text-primary">dates</strong>
+            <strong class="d-inline-block mb-2 text-primary" ng-show="this">dates</strong>
               <p class="mb-1">
                 <a class="text-muted" href="#">{{x.depart_date}}</a><br>
                 |<br>|<br>|<br>
@@ -67,7 +67,8 @@
               </p>
               </div>
               <div class="card-header">
-              <a class="btn btn-primary" href="../views/single-view.php">view more</a>
+              <a class="btn btn-primary" href="single-view.php?source={{x.source}}&destination={{x.destination}}&depart={{x.depart_date}}&return={{x.return_date}}">view more</a>
+              <div ng-show = "IsVisible">zxzczx</div>
               </div>         
           </div>
         </div>
@@ -78,10 +79,17 @@
 <script>
 var app = angular.module('live_search_app', []);
 app.controller('live_search_controller', function($scope, $http){
+ $scope.IsVisible = false;
+ $scope.ShowHide = function(){
+     $scope.IsVisible = $scope.IsVisible = true;
+ }
+  $scope.Hide = function(){
+     $scope.IsVisible = $scope.IsVisible = false;
+ }
  $scope.fetchData = function(){
   $http({
    method:"POST",
-   url:"search.php",
+   url:"../controllers/searchController.php",
    data:{search_query:$scope.search_query,search_query2:$scope.search_query2}
   }).success(function(data){
    $scope.searchData = data;
