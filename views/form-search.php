@@ -79,13 +79,13 @@
 <script>
 var app = angular.module('live_search_app', []);
 app.controller('live_search_controller', function($scope, $http){
- $scope.IsVisible = false;
- $scope.ShowHide = function(){
-     $scope.IsVisible = $scope.IsVisible = true;
- }
-  $scope.Hide = function(){
-     $scope.IsVisible = $scope.IsVisible = false;
- }
+ // $scope.IsVisible = false;
+ // $scope.ShowHide = function(){
+ //     $scope.IsVisible = $scope.IsVisible = true;
+ // }
+ //  $scope.Hide = function(){
+ //     $scope.IsVisible = $scope.IsVisible = false;
+ // }
  $scope.fetchData = function(){
   $http({
    method:"POST",
