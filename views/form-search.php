@@ -15,19 +15,19 @@
     <div class="container" ng-app="live_search_app" ng-controller="live_search_controller" ng-init="fetchData()">
     <div class="form-group" style="margin-top: 100px;">
     <div class="input-group">
-    <div class="form-label-group">   
+    <div class="form-label-group">
     <select class="form-control searching" id="search_text" name="search_text" style="height: 62px" ng-model="search_query">
     </select>
      </div>
-    <div class="form-label-group">   
+    <div class="form-label-group">
     <select class="form-control searching" id="srcCity" name="srcCity" style="height: 62px">
     </select>
      </div>
-    <div class="form-label-group">   
+    <div class="form-label-group">
     <select class="form-control searching" id="search_text2" name="search_text2" style="height: 62px;" ng-model="search_query2">
     </select>
      </div>
-    <div class="form-label-group">   
+    <div class="form-label-group">
     <select class="form-control searching" id="destCity" name="destCity" style="height: 62px">
     </select>
      </div>
@@ -69,7 +69,7 @@
               <div class="card-header">
               <a class="btn btn-primary" href="single-view.php?source={{x.source}}&destination={{x.destination}}&depart={{x.depart_date}}&return={{x.return_date}}">view more</a>
               <div ng-show = "IsVisible">zxzczx</div>
-              </div>         
+              </div>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@ app.controller('live_search_controller', function($scope, $http){
  $scope.fetchData = function(){
   $http({
    method:"POST",
-   url:"../controllers/searchController.php",
+   url:"../Classes/controllers/searchController.php",
    data:{search_query:$scope.search_query,search_query2:$scope.search_query2}
   }).success(function(data){
    $scope.searchData = data;

@@ -8,11 +8,11 @@ class Search
 	public $connect;
 	public function searching($query1, $query2)
 	{
-		
+
 		$this->connect = mysqli_connect("localhost", "ishimwe", "Divin@12345", "testing");
 		if ($query2 != "" && $query1 != "")
 	    {
-			
+
 			$query = "SELECT * FROM test WHERE destination LIKE '%$query2%' AND source LIKE '%$query1%'";
 		}
 		else
