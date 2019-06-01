@@ -41,8 +41,8 @@
      </div>
     </div>
     <button id="search" type="submit" class="btn btn-default" ng-click="fetchData()">search</button>
-    {{search_query}}
-    {{searchData}}
+    <!-- {{search_query}}
+    {{searchData}} -->
    </div>
    <br />
    <div id="result" class="showResult">
@@ -89,7 +89,7 @@ app.controller('live_search_controller', function($scope, $http){
  $scope.fetchData = function(){
   $http({
    method:"POST",
-   url:"../Classes/controllers/searchController.php",
+   url:"../Classes/controllers/myController.php",
    data:{search_query:$scope.search_query,search_query2:$scope.search_query2}
   }).success(function(data){
    $scope.searchData = data;
