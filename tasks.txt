@@ -6,5 +6,5 @@
 - (5)let classes perform only their specific functions
 - *(3)create an abstract class for connection and create MSqlConnection class that inherite from connection
 - *(1)read about MVC => keep view with only tasks. model, view, and controller should be clear
-- (4)create a classes folder in which we put all our classes(e.g. classe ya user, class transaction, class ya booking, )
+- *(4)create a classes folder in which we put all our classes(e.g. classe ya user, class transaction, class ya booking, )
 - (8)later have a look at bootstrap countries and cities
