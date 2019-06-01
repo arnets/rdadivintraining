@@ -6,5 +6,5 @@ ini_set('display_startup_errors', TRUE);
 require_once('../../libs/nusoap/lib/nusoap.php');
 $c = new soapclient('http://localhost/rdadivintraining/Classes/controllers/soapManager.php?wsdl');
 $source = $c->__call('soapManager.getData',array("source" => "Rwanda:Butare","destination" => "Tanzania:Dodoma"));
-echo $source;
+echo "[".$source."]";
 ?>

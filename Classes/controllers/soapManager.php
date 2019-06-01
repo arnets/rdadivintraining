@@ -1,8 +1,8 @@
 <?php
 //this is a soap server
-error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+// error_reporting(E_ALL);
+// ini_set('display_errors', TRUE);
+// ini_set('display_startup_errors', TRUE);
 include '../mySqlConnection.php';
 class soapManager extends mySqlConnection
 {
@@ -15,7 +15,12 @@ class soapManager extends mySqlConnection
     $con = mySqlConnection::mysqlconnect($dsn,$user,$pass);
     $data = $source;
     $data2 = $destination;
-    $query = "SELECT * FROM test WHERE source = '".$data."' AND destination = '".$data2."'";
+    if ($data2 != "" && $data != "")
+      {
+
+      $query = "SELECT * FROM test WHERE source LIKE '%$data%' AND destination LIKE '%$data2%'";
+    }
+
     $result = $con->prepare($query);
     $result->execute();
     $row = $result->fetch(PDO::FETCH_ASSOC);
