@@ -2,9 +2,9 @@
 include 'AbstractConnection.php';
 //connection
 
-class mySqlConnection
+class mySqlConnection extends abstractConnection
 {
-use connection;
+//use connection;
   protected $conn;
   public function mysqlconnect($dsn,$user,$pswd)
     {

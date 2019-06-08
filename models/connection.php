@@ -10,7 +10,8 @@ $server = "mysql:host=localhost;dbname=cloudways";
 $connect = new mySqlConnection();
 $con = $connect->mysqlconnect($dsn,$user,$pass);
 $sql = "select * from test";
-foreach ($con->query($sql) as $row) {
+foreach ($con->query($sql) as $row)
+  {
     echo " id: ".$row['id'] .": Source: ".$row['source'] . "to "." Destination: ".$row['destination']."<br>";
     }
  ?>

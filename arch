@@ -1,6 +1,6 @@
 classes:
   -modelClass: *insert func, *delete func, *update func, *select func.
-  -controllerfnc: *search func, *booking func, *soapHandler cls, *soapManager cls, *dataHandler cls.
+  -controllerClass: *search func, *booking func, *soapHandler cls, *soapManager cls, *dataHandler cls.
   -connetcion class.
   -mySqlConnection class.
 view: *searchForm-with-singleView.

@@ -67,10 +67,39 @@
               </p>
               </div>
               <div class="card-header">
-              <a class="btn btn-primary" href="single-view.php?source={{x.source}}&destination={{x.destination}}&depart={{x.depart_date}}&return={{x.return_date}}">view more</a>
+              <!-- <a class="btn btn-primary" href="single-view.php?source={{x.source}}&destination={{x.destination}}&depart={{x.depart_date}}&return={{x.return_date}}">view more</a> -->
+							<a class="btn btn-primary" href="" data-toggle="collapse" data-target="#more">view more</a>
               <div ng-show = "IsVisible">zxzczx</div>
               </div>
           </div>
+					<div id="more" class="collapse">
+					<div class="card flex-md-row mb-4 box-shadow h-md-150" style="border-radius:0px;">
+						<div class="card-text">
+							<strong class="d-inline-block mb-2 text-primary">MORE DATA</strong>
+						</div>
+						<div class="card-body d-flex flex-column align-items-start">
+							<strong class="d-inline-block mb-2 text-primary">travel</strong>
+							<p class="mb-1">
+								<a class="text-muted" href="#">{{x.source}}</a><br>
+								<center>|<br>|<br>\/</center>
+								<a class="text-muted" href="#">{{x.destination}}</a><br>
+							</p>
+							<p class="card-text mb-auto"></p>
+						</div>
+						<div class="card-body">
+						<strong class="d-inline-block mb-2 text-primary" ng-show="this">dates</strong>
+							<p class="mb-1">
+								<a class="text-muted" href="#">{{x.depart_date}}</a><br>
+								|<br>|<br>|<br>
+								<a class="text-muted" href="#">{{x.return_date}}</a><br>
+							</p>
+							</div>
+							<div class="card-header">
+              <a class="btn btn-primary" href="../Classes/controllers/dataHandler.php?source={{x.source}}&destination={{x.destination}}&depart={{x.depart_date}}&return={{x.return_date}}">booking</a>
+							<!-- <a class="btn btn-primary" href="../Classes/controllers/dataHandler.php">view more</a> -->
+              </div>
+					</div>
+				</div>
         </div>
       </div>
    </div>

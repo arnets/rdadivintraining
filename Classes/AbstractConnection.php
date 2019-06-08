@@ -1,6 +1,10 @@
 <?php
-trait Connection
+abstract class abstractConnection
 {
-	  abstract public function mysqlconnect($dsn,$user,$pswd);
+	  abstract public function connect($dsn,$user,$pswd);
+		public function Hello()
+		{
+			echo "hello";
+		}
 }
 ?>
