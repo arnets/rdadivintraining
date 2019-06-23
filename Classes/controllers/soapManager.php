@@ -6,9 +6,7 @@ ini_set('display_startup_errors', true);
 include '../Connection.php';
 class soapManager extends Connection
 {
-    protected $user ="ishimwe";
-    protected $pswd ="Divin@12345";
-    protected $dsn = "mysql:host=localhost;dbname=testing";
+    require '../models/config.php';
     protected $conn;
     public function connect()
     {
