@@ -1,9 +1,10 @@
 - *(2)configuration file with datasource information(database connection)
 - you can make soapconnection class inherite from connection abstract
-- *(4)create a classes folder in which we put all our classes(e.g. classe ya user, class transaction, class ya booking, )
+- *(4)create a class classe ya user, class transaction, class ya booking, )
 - (8)later have a look at bootstrap countries and cities
 - user class transaction class and booking class should be inherite from dataHandler
-- functions such as instert update and select in the datahandler will take as  parameter the table name, array with key and value containing name of the talble elements and values
+- functions such as insert update and select in the datahandler will take as  parameter the table name, array with key and value containing name of the talble elements and values
 - later we should be able to set the table name in the constructor,
-- instert and search should be function of either dataHandler or controller.
-- read  about mock and php mock
+- insert and search should be function of either dataHandler or controller.
+- read  about mock and PHP mock
+- create a class cal and mock that class such that we have a success and  code 200 for successful transaction, failed and code 200 for failed transaction. pass those information to soap response

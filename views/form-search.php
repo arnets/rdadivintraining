@@ -95,7 +95,7 @@
 							</p>
 							</div>
 							<div class="card-header">
-              <a class="btn btn-primary" href="../Classes/controllers/dataHandler.php?source={{x.source}}&destination={{x.destination}}&depart={{x.depart_date}}&return={{x.return_date}}">booking</a>
+              <a class="btn btn-primary" href="../Classes/controllers/myController.php?source={{x.source}}&destination={{x.destination}}&depart={{x.depart_date}}&return={{x.return_date}}">booking</a>
 							<!-- <a class="btn btn-primary" href="../Classes/controllers/dataHandler.php">view more</a> -->
               </div>
 					</div>
@@ -108,17 +108,10 @@
 <script>
 var app = angular.module('live_search_app', []);
 app.controller('live_search_controller', function($scope, $http){
- // $scope.IsVisible = false;
- // $scope.ShowHide = function(){
- //     $scope.IsVisible = $scope.IsVisible = true;
- // }
- //  $scope.Hide = function(){
- //     $scope.IsVisible = $scope.IsVisible = false;
- // }
  $scope.fetchData = function(){
   $http({
    method:"POST",
-   url:"../Classes/controllers/myController.php",
+   url:"../Classes/controllers/Controller.php",
    data:{search_query:$scope.search_query,search_query2:$scope.search_query2}
   }).success(function(data){
    $scope.searchData = data;
@@ -126,42 +119,6 @@ app.controller('live_search_controller', function($scope, $http){
  };
 });
 </script>
-<!-- <script>
-$(document).ready(function(){
- $("#result").hide();
- load_data();
-
- function load_data(query,query2,query3,query4,srcCity,destCity)
- {
-  $.ajax({
-   url:"../fetch2.php",
-   method:"POST",
-   data:{query:query,query2:query2,query3:query3,query4:query4,srcCity:srcCity,destCity:destCity},
-   success:function(data)
-   {
-    $('#result').html(data);
-   }
-  });
- }
- $('#search').click(function(){
-  $("#result").slideToggle(500);
-  var search = $('#search_text').val();
-  var search2 = $('#search_text2').val();
-  var search3 = $('#search_text3').val();
-  var search4 = $('#search_text4').val();
-  var search5 = $('#srcCity').val();
-  var search6 = $('#destCity').val();
-  if(search != '')
-  {
-   load_data(search,search2,search3,search4,search5,search6);
-  }
-  else
-  {
-   load_data();
-  }
- });
-});
-</script> -->
 <script language="javascript">
   populateCountries("search_text","srcCity");
   populateCountries("search_text2","destCity");

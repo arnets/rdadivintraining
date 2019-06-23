@@ -15,16 +15,16 @@ class Query{
          }
 
          #building query............................
-		
+
 		$dataholder = $this->data[0];
-	    for ($i=1; $i < $len; $i++) { 
+	    for ($i=1; $i < $len; $i++) {
 	    	# code...
 	    	$dataholder = $dataholder.", ".$this->data[$i];
 	    }
 	    $fieldholder = $this->field[0];
-	    for ($i=1; $i < $len; $i++) { 
+	    for ($i=1; $i < $len; $i++) {
 	    	# code...
-	    	$fieldholder = $fieldholder.", ".$this->field[$i]; 
+	    	$fieldholder = $fieldholder.", ".$this->field[$i];
 	    }
 	    #executing query...................................
 
@@ -35,7 +35,7 @@ class Query{
 	    echo '<script>alert("data well registered")</script>';
         }
         else{
-        echo '<script>alert("data not registered")</script>';	
+        echo '<script>alert("data not registered")</script>';
         }
 	}
 }

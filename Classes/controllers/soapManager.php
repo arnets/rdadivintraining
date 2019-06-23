@@ -1,42 +1,50 @@
 <?php
-//this is a soap server
-// error_reporting(E_ALL);
-// ini_set('display_errors', TRUE);
-// ini_set('display_startup_errors', TRUE);
-include '../mySqlConnection.php';
-class soapManager extends mySqlConnection
+// this is a soap server
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
+include '../Connection.php';
+class soapManager extends Connection
 {
-  function getData($source,$destination)
-  {
-    //$conn=mysqli_connect('localhost','ishimwe','Divin@12345','testing');
-    $user ="ishimwe";
-    $pass ="Divin@12345";
-    $dsn = "mysql:host=localhost;dbname=testing";
-    $con = mySqlConnection::mysqlconnect($dsn,$user,$pass);
-    $data = $source;
-    $data2 = $destination;
-    if ($data2 != "" && $data != "")
-      {
-
-      $query = "SELECT * FROM test WHERE source LIKE '%$data%' AND destination LIKE '%$data2%'";
+    protected $user ="ishimwe";
+    protected $pswd ="Divin@12345";
+    protected $dsn = "mysql:host=localhost;dbname=testing";
+    protected $conn;
+    public function connect()
+    {
+        try {
+            $options  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,);
+            $this->conn = new PDO($this->dsn, $this->user, $this->pswd, $options);
+            return $this->conn;
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
     }
+    public function getData($source, $destination)
+    {
+        $con = $this->connect();
+        if ($source != "" && $source != "") {
+            $query = "SELECT * FROM test WHERE source LIKE '%$source%' AND destination LIKE '%$destination%'";
+        }
 
-    $result = $con->prepare($query);
-    $result->execute();
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-    return json_encode($row);
-    // foreach ($result as $row) {
+        $result = $con->prepare($query);
+        $result->execute();
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        return json_encode($row);
+        // foreach ($result as $row) {
     //   return $row['destination']." AND ".$row['source'];
     // }
     //return $row['destination']." AND ".$row['source'];
-  }
+    }
 }
 require('../../libs/nusoap/lib/nusoap.php');
 $server = new nusoap_server();
 $server->configureWSDL('soapManager', 'urn:travels');
-$server->register("soapManager.getData",
-array('source' => 'xsd:string'),
-array('destination' => 'xsd:string'),
-'urn:travels',
-'urn:travels#getData');
+$server->register(
+    "soapManager.getData",
+    array('source' => 'xsd:string'),
+    array('destination' => 'xsd:string'),
+    'urn:travels',
+    'urn:travels#getData'
+);
 $server->service(file_get_contents("php://input"));
