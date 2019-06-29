@@ -6,14 +6,13 @@ ini_set('display_startup_errors', true);
 include '../Connection.php';
 class soapManager extends Connection
 {
-    require '../models/config.php';
     protected $conn;
     public function connect()
     {
         try {
+            require '../models/config.php';
             $options  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,);
-            $this->conn = new PDO($this->dsn, $this->user, $this->pswd, $options);
-            return $this->conn;
+            return new PDO($dsn, $user, $pswd, $options);
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
@@ -24,7 +23,6 @@ class soapManager extends Connection
         if ($source != "" && $source != "") {
             $query = "SELECT * FROM test WHERE source LIKE '%$source%' AND destination LIKE '%$destination%'";
         }
-
         $result = $con->prepare($query);
         $result->execute();
         $row = $result->fetch(PDO::FETCH_ASSOC);
