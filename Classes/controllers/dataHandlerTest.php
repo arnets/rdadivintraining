@@ -2,42 +2,55 @@
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 ini_set('display_startup_errors', true);
-class dataHandler
+include "../mySqlConnection.php";
+class dataHandler extends mySqlConnection
 {
-    public function insert($table, $fields, $data)
+    public function insert($data)
     {
-        $fieldsLen = sizeof($fields);
-        $dataLen = sizeof($data);
-        $fieldsHolder = $fields[0];
-        for ($i = 1; $i < $fieldsLen; $i++) {
-            $fieldsHolder = $fieldsHolder.", ".$fields[$i];
+        $connect = new mySqlConnection();
+        $con = $connect->connect();
+        $len = sizeof($data);
+        $keys = array_keys($data);
+        $table = $keys[0];
+        $fields = $keys[1];
+        for ($i=2; $i < $len; $i++) {
+            $fields =$fields.",".$keys[$i];
         }
-        $dataHolder = "'".$data[0]."'";
-        for ($i = 1; $i < $dataLen; $i++) {
-            $dataHolder = $dataHolder.", "."'".$data[$i]."'";
+        $values = "'".$data[$keys[1]]."'";
+        for ($i=2; $i < $len; $i++) {
+            $values = $values.","."'".$data[$keys[$i]]."'";
         }
-        $sql = "INSERT INTO ".$table."(".$fieldsHolder.") VALUES(".$dataHolder.")";
+        $sql = "INSERT INTO ".$table."(".$fields.") VALUES(".$values.")";
         // echo $sql;
         if ($con->exec($sql)) {
             echo"data inserted successfully";
         }
     }
-    public function update($table, $fields, $data)
+    public function update($data)
     {
-        $fieldsLen = sizeof($fields);
-        $dataLen = sizeof($data);
-        $update = $fields[0]." = "."'".$data[0]."'";
-        for ($i = 1; $i < $fieldsLen; $i++) {
-            $update = $update.", ".$fields[$i]." = "."'".$data[$i]."'";
+        $connect = new mySqlConnection();
+        $con = $connect->connect();
+        $len = sizeof($data);
+        $keys = array_keys($data);
+        $table = $keys[0];
+        $id = $data[$keys[1]];
+        $update = $keys[1]."="."'".$data[$keys[1]]."'";
+        for ($i=2; $i < $len; $i++) {
+            $update = $update.",".$keys[$i]."="."'".$data[$keys[$i]]."'";
         }
-        $sql = "UPDATE ".$table." SET ".$update." WHERE id = '$fields[0]'";
+        $sql = "UPDATE ".$table." SET ".$update." WHERE id = $id";
         // echo $sql;
         if ($con->exec($sql)) {
             echo"data updated successfully";
         }
     }
-    public function delete($table, $id)
+    public function delete($data)
     {
+        $connect = new mySqlConnection();
+        $con = $connect->connect();
+        $keys = array_keys($data);
+        $table = $keys[0];
+        $id = $data[$keys[1]];
         $sql = "DELETE FROM ".$table." WHERE id = '$id'";
         // echo $sql;
         if ($con->exec($sql)) {
@@ -45,9 +58,8 @@ class dataHandler
         }
     }
 }
+// $src = "this";
+// $dest = "that";
+// $data=["bookings" => "","id" => "1","source" => $src,"destination" => $dest];
 // $obj = new dataHandler();
-// $data = ["1","divin","fiston"];
-// $fields = ["id","fname","lname"];
-// $table = "users";
-// $id = '1';
-// $obj->delete($table, $id);
+// $obj->update($data);

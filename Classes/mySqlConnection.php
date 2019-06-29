@@ -9,7 +9,7 @@ class mySqlConnection extends Connection
     public function connect()
     {
         try {
-            require '../models/config.php';
+            require 'config.php';
             $options  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,);
             return new PDO($dsn, $user, $pswd, $options);
         } catch (PDOException $e) {
