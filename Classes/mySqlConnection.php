@@ -16,10 +16,10 @@ class mySqlConnection extends Connection
         }
     }
 }
-$ds = new mySqlConnection();
-$con = $ds->connect();
-$query = "SELECT * FROM test";
-$result = $con->prepare($query);
-$result->execute();
-$row = $result->fetch(PDO::FETCH_ASSOC);
-echo json_encode($row);
+// $ds = new mySqlConnection();
+// $con = $ds->connect();
+// $query = "SELECT * FROM test";
+// $result = $con->prepare($query);
+// $result->execute();
+// $row = $result->fetch(PDO::FETCH_ASSOC);
+// echo json_encode($row);
