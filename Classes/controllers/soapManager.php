@@ -4,15 +4,14 @@ error_reporting(E_ALL);
 ini_set('display_errors', true);
 ini_set('display_startup_errors', true);
 include '../Connection.php';
+require '../config.php';
 class soapManager extends Connection
 {
-    protected $conn;
     public function connect()
     {
         try {
-            require '../models/config.php';
             $options  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,);
-            return new PDO($dsn, $user, $pswd, $options);
+            return new PDO($GLOBALS['dsn'], $GLOBALS['user'], $GLOBALS['pswd'], $options);
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }

@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', true);
 ini_set('display_startup_errors', true);
 include "../mySqlConnection.php";
-class dataHandler extends mySqlConnection
+class dataHandlerTest extends mySqlConnection
 {
     public function insert($data)
     {

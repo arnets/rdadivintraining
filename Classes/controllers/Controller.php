@@ -6,11 +6,9 @@
  ini_set('display_errors', true);
  ini_set('display_startup_errors', true);
  require_once('../../libs/nusoap/lib/nusoap.php');
- include "dataHandler.php";
- include "../mySqlConnection.php";
-class Controller extends mySqlConnection
+ include "dataHandlerTest.php";
+class Controller extends dataHandlerTest
 {
-    //use mySqlConnection;
     public function search($src, $dest)
     {
         $c = new soapclient('http://localhost/rdadivintraining/Classes/controllers/soapManager.php?wsdl');
@@ -19,6 +17,11 @@ class Controller extends mySqlConnection
         $encode = json_encode($decode);
         echo "[".$encode."]";
     }
+    public function insertData($data)
+    {
+        $ctrl = new dataHandlerTest();
+        $ctrl->insert($data);
+    }
 }
   $form_data = json_decode(file_get_contents("php://input"));
     if (isset($form_data->search_query,$form_data->search_query2)) {
@@ -26,6 +29,16 @@ class Controller extends mySqlConnection
         $search_query2 = $form_data->search_query2;
         $obj = new Controller();
         $obj->search($search_query, $search_query2);
+    } elseif (isset($form_data->insert_query,$form_data->insert_query2)) {
+        $insert_query = $form_data->insert_query;
+        $insert_query2 = $form_data->insert_query2;
+        $data=["bookings" => "",
+            "source" => $insert_query,
+            "destination" => $insert_query2,
+            "depart_date" =>"2019-06-09",
+            "return_date" =>"2019-07-06"];
+        $obj = new Controller();
+        $obj->insertData($data);
     } else {
         echo"nothing set";
     }

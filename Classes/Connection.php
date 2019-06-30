@@ -1,5 +1,5 @@
 <?php
-require '../models/config.php';
+require 'config.php';
 abstract class Connection
 {
     abstract public function connect();
