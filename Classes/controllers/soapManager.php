@@ -19,7 +19,7 @@ class soapManager extends Connection
     public function getData($source, $destination)
     {
         $con = $this->connect();
-        if ($source != "" && $source != "") {
+        if ($source != "" && $destination != "") {
             $query = "SELECT * FROM test WHERE source LIKE '%$source%' AND destination LIKE '%$destination%'";
         }
         $result = $con->prepare($query);
