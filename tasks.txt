@@ -1,6 +1,0 @@
-- correct use config file information in  connection class or  other connetion classes children
-- (8)later have a look at bootstrap countries and cities
-- controller should receive the data arrray to view an kuri dataHandler
-- later we should be able to set the table name in the constructor
-- read  about mock and PHP mock
-- create a class cal and mock that class such that we have a success and  code 200 for successful transaction, failed and code 200 for failed transaction. pass those information to soap response

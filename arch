@@ -1,8 +1,0 @@
-classes:
-  -modelClass: *insert func, *delete func, *update func, *select func.
-  -controllerClass: *search func, *booking func, *soapHandler cls, *soapManager cls, *dataHandler cls.
-  -connetcion class.
-  -mySqlConnection class.
-view: *searchForm-with-singleView.
-nusoap: *soap classes.
-public dir: for Jscripts && css.
