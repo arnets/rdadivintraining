@@ -1,5 +1,5 @@
 <?php
-include '../models/connection.php';
+include '../Classes/Connection.php';
 // $data = json_decode(file_get_contents("php://input"));
 // $source = $data->source;
 // $destination = $data->destination;
@@ -8,8 +8,8 @@ include '../models/connection.php';
 // $departDate = $data->departDate;
 // $returnDate = $data->returnDate;
 $dsn ="mysql:host=localhost;dbname=testing";
-$user ="ishimwe";
-$pass ="Divin@12345";
+$user ="";
+$pass ="";
 $connect = new Connection($dsn,$user,$pass);
 $form_data = json_decode(file_get_contents("php://input"));
 $query = '';
